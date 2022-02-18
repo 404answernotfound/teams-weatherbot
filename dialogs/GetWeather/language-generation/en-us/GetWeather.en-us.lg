@@ -1,0 +1,54 @@
+[import](common.lg)
+
+# SendActivity_i7mqXM()
+[Activity
+    Text = ${SendActivity_i7mqXM_text()}
+]
+
+# SendActivity_i7mqXM_text()
+- Let's check the weather
+# TextInput_Prompt_vLHJeG()
+[Activity
+    Text = ${TextInput_Prompt_vLHJeG_text()}
+]
+
+# TextInput_Prompt_vLHJeG_text()
+- What's the postal code?
+# TextInput_UnrecognizedPrompt_vLHJeG()
+[Activity
+    Text = ${TextInput_UnrecognizedPrompt_vLHJeG_text()}
+]
+
+# TextInput_UnrecognizedPrompt_vLHJeG_text()
+- Sorry, I do not understand '${this.value}'. Please specify a 5 digit postal code in the format 12345.
+- Sorry, '${this.value}' is not valid. I'm looking for a 5 digit number as postal code. Please specify a 5 digit postal code in the format 12345.
+# TextInput_DefaultValueResponse_vLHJeG()
+[Activity
+    Text = ${TextInput_DefaultValueResponse_vLHJeG_text()}
+]
+
+# TextInput_DefaultValueResponse_vLHJeG_text()
+- 90210
+# SendActivity_nHMM7u()
+[Activity
+    Text = ${SendActivity_nHMM7u_text()}
+    Attachments = ${SendActivity_nHMM7u_attachment_PeuGFY()}
+]
+
+# SendActivity_nHMM7u_text()
+- The weather is ${dialog.fahrenheit}F or ${dialog.celsius}C and ${dialog.weather}.
+# SendActivity_ivpi06()
+[Activity
+    Text = ${SendActivity_ivpi06_text()}
+]
+
+# SendActivity_ivpi06_text()
+- Something went wrong: ${dialog.api_response.content.message}.
+# SendActivity_nHMM7u_attachment_PeuGFY()
+
+[HeroCard
+    title = Weather in ${dialog.city} in ${dialog.country}
+    text =  It is "${dialog.weather}" in ${user.postalcode} and the temperature is ${dialog.fahrenheit}&deg;F or ${dialog.celsius}&deg;C. Have a nice day.
+    image = http://openweathermap.org/img/wn/${dialog.icon}@2x.png
+    buttons = Thanks
+]
